@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Write your comments here --> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ow9u's aPG vip commands cheat sheet</title>
+    <meta name="description" content="a bit useful cheat sheet">
+    <meta name="author" content="ow9u">
+    <link rel="stylesheet" href="pico/css/pico.classless.min.css">
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>ow9u's aPG vip commands cheat sheet</h1>
+            <h2>Cheat sheet for <a href="https://www.roblox.com/games/6405807112">average Plate Gaem</a> Roblox game</h2>
+        </hgroup>
+    </header>
+    <main class="container">
+        <div id="commandSections"></div>
+        <article>
+            <p>
+                Also thanks to <a href="https://discord.com/users/777172240927162429">TheCat</a> 
+                for <a href="https://discord.com/channels/1057920802999246878/1080126457872916521">the thread</a> 
+                with listed in-game staff
+            </p>
+            <p>
+                And being handsome <i>(maybe)</i>
+            </p>
+        </article>
+    </main>
+    <footer>
+        <small>
+            <code id="version">v0.0</code> • <a href="https://github.com/Shaehl/aPG-vip-commands-cheat-sheet">Source code</a>
+        </small>
+    </footer>
+
+    <script src="src/index.js"></script>
+    <script>
+        fetch("src/storage.json")
+            .then(res => res.json())
+            .then((json) => {
+                let {options} = json
+
+                window.options = options
+                options.targetAll = [options.targetPlates,options.targetPlayers].flat()
+
+                let {maps} = options
+                if (maps) {
+                    maps
+                        .forEach(group => group.optionsList = group.optionsList.map(k => `${group.groupName}.${k}`))
+                }
+
+                initCommandSections(json.commands)
+                versionChange(json.version)
+            })
+    </script>
+</body>
+</html>
